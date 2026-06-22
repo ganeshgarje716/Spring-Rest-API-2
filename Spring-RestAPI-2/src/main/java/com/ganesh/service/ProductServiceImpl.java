@@ -3,14 +3,17 @@ package com.ganesh.service;
 import java.util.Arrays;
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import com.ganesh.entity.Product;
 import com.ganesh.exception.ProductNotFoundException;
 
+@Service
 public class ProductServiceImpl implements ProductService{
 
 	
 	
-	public List<Product> getAllProducts() {
+	public List<Product> getProducts() {
 		
 		Product p1=new Product(1, "Laptop", 70000.00, 22, "Electronics");
 		Product p2=new Product(2, "Mobile", 7000.00, 22, "Electronics");
@@ -26,7 +29,7 @@ public class ProductServiceImpl implements ProductService{
 	@Override
 	public Product getProductById(Integer id) {
 		// TODO Auto-generated method stub
-		 List<Product> allProducts = getAllProducts();
+		 List<Product> allProducts = getProducts();
 		 
 		 for (Product product : allProducts) {
 			 
@@ -36,6 +39,18 @@ public class ProductServiceImpl implements ProductService{
 			}
 		}
 		 throw new ProductNotFoundException("Product not found for id = "+id);
+	}
+
+	@Override
+	public List<Product> getAllproducts() {
+		// TODO Auto-generated method stub
+		return getProducts();
+	}
+
+	@Override
+	public String saveProduct(Product product) {
+
+		return "Product Saved Success";
 	}
 
 }
